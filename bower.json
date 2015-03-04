@@ -1,0 +1,16 @@
+{
+  "name": "sunrise-frontend-challenge",
+  "version": "0.0.1",
+  "authors": [
+    "llaine <darksioul6@gmail.com>"
+  ],
+  "description": "The front end challenge of sunrise",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
