@@ -1,0 +1,73 @@
+@import "mixins";
+
+/* The style for the .hour li item */
+.hour {
+	@extend .noListStyle;
+	margin-top:5px;
+	padding: 10px;
+	border-bottom: 1px solid silver;
+}
+
+#calendar-view {
+
+  /* The aside part which contains the list of hours. */
+	#hoursView {
+		@extend .gridHeight;
+		position: absolute;
+
+
+	  	#time {
+			margin-left: -30px;
+
+			/* the list containning all the hours */
+			ul {
+				@extend .inlineClear;
+				li {
+					height: 100%;
+
+					text-align: center;
+
+				}
+			}
+		}
+		/* When the screen is < 600px; */
+	  	@media screen and (max-width: $break-medium) {
+			position: static;
+
+		}
+	}
+
+  	/* The section element which contains the grid */
+	#gridView {
+	  	@extend .gridHeight;
+
+	  	/*
+	  	 The tree of the grid :
+	  	 	ul#day-grid
+	  	      > li#hoursView (*1) : Represent the hours on the left
+	  	 	  > li.day (*7) : The days of the week
+	  	 	   > ul
+	  	 		 > li.hour (*24)
+	  	 */
+		#day-grid {
+		  	@extend .center;
+
+			li.day {
+			  	@extend .inlineClear;
+				margin:0.5% 0 2% 0.5%; /* T / R / B / L */
+				width:180px;
+			  	display: inline-block;
+			  	height: 100%;
+			}
+
+
+		  	li#hoursView {
+				@extend .inlineClear;
+			  	margin: 0.5% 0 2% -3%;
+			  	width: 50px;
+				display: inline-block;
+				height: 100%;
+			}
+		}
+	}
+}

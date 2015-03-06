@@ -1,0 +1,79 @@
+/* variables definition */
+$font: 'Helvetica neue', Helvetica, Arial, sans-serif;
+
+$break-small: 320px;
+$break-medium: 600px;
+$break-large: 1200px;
+$grid-height: 500px;
+
+
+$grey: #e3e3e3;
+
+/* Reset classes  */
+html, body, div, span, h1, h2, h3, li, ul {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+
+.noMargin {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* main container */
+.container {
+  font: $font;
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.gridHeight {
+	height: $grid-height;
+}
+
+/* list attribut style */
+.inlineClear {
+  display: inline;
+  list-style: none;
+}
+
+.noListStyle {
+	list-style: none;
+}
+
+/* font settings.  */
+.fontXBold{ font-weight: 900;}
+.fontBold{ font-weight: 600;}
+.fontReg{ font-weight: 400;}
+.fontThin{ font-weight: 200;}
+.fontXThin{ font-weight: 100;}
+.fontUp{ text-transform: uppercase;}
+.fontLo{ text-transform: lowercase;}
+
+/* alginement */
+.center { text-align: center; }
+.col1 { margin-left: 10% }
+
+
+
+/* Border function */
+@mixin borderTopBot($value, $isTop){
+  	$type: solid;
+  	$color: black;
+
+  	@if $isTop == true {
+		border-top: $value $type $color;
+	}
+	@else if $isTop == false {
+		border-bottom: $value $type $color;
+	}
+  	@else {
+		border-top: $value $type $color;
+		border-bottom: $value $type $color;
+	}
+}
+
+

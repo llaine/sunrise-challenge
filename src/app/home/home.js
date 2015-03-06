@@ -10,5 +10,6 @@
 
 angular.module('ngSunriseChallenge')
     .controller('homeController', [function() {
-        console.log('test');
+
+
     }]);
