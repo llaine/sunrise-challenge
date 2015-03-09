@@ -16,7 +16,9 @@
 
 var app = angular.module('ngSunriseChallenge');
 
-app.service('DomManipulator', ['$timeout', function ($timeout) {
+app.service('DomManipulator', ['$timeout','LayoutManager', function ($timeout, LayoutManager) {
+    var EVENT_CLASS_NAME = "event",
+        EVENT_DATA_COLUMNS = 'data-column';
 
     /**
      * Apply a function to an event for an HTMLCollection
@@ -63,17 +65,74 @@ app.service('DomManipulator', ['$timeout', function ($timeout) {
         };
     }
 
+    function getSiblings(parent){
+        if(parent.children.length > 0) {
+            return parent.children;
+        }
+    }
 
-    function createNewEvent(parent, position, title){
+
+    /**
+     * Create a new a.event tag on parent tag params.
+     *
+     * - Set position.
+     * - Check for siblings
+     * - Format the event
+     * - Append to the DOM.
+     *
+     * @param parent
+     * @param position
+     * @param title
+     */
+    function createNewEvent(parent, position){
+        /* Search for siblings in the clicked div */
+        var siblings = getSiblings(parent);
+        /* Create a new a aka event. */
         var event = document.createElement("a");
-        event.className = "event";
-        event.style.top = position.top + 'px';
-        event.style.left = position.left + 'px';
-        event.innerHTML = '<h3>' + title + '</h3>';
 
+        /* Setup all the attribute to the new event and on the siblings (if there) */
+        setUpAttributToEvent(position, siblings, event);
 
-
+        /* Append the event to the clicked div  */
         parent.appendChild(event);
+    }
+
+    // TODO determiner si sur la même column avec breakpoints.
+    function setUpAttributToEvent(position, siblings, event){
+        var left = LayoutManager.determineLeft(position.left);
+
+        event.className = EVENT_CLASS_NAME;
+        event.setAttribute(EVENT_DATA_COLUMNS, left.col);
+        event.innerHTML = '<h3>Hello World ! </h3>';
+
+        if(siblings) {
+            switch (siblings.length) {
+                case 0:
+                    event.style.top = position.top + 'px';
+                    event.style.left = left.poz + 'px';
+                    break;
+                /*
+                Okay we just have on event on the current div
+                So let's split them in the cell.
+                */
+                case 1:
+                    /* For the siblings, shrinkin the size */
+                    siblings[0].style.width = 50+'px';
+                    /* for the new event */
+                    event.style.width = 50 + 'px';
+                    event.style.left = (left.poz + 50) + 'px';
+
+                    break;
+                case 2:
+
+
+                    break;
+                case 3:
+
+
+                    break;
+            }
+        }
     }
 
 
@@ -81,6 +140,6 @@ app.service('DomManipulator', ['$timeout', function ($timeout) {
         addEventListenerList: addEventListenerList,
         domReady: domReady,
         getPosition: getPosition,
-        createEvent: createNewEvent
+        createEventOnGrid: createNewEvent
     }
 }]);

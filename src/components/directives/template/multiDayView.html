@@ -17,13 +17,11 @@
                     <td class="hour-row">
                         {{ time.hour }}
                     </td>
-                    <td class="cell grid-cell" colspan="7">
-                        {{ time.content }}
-                    </td>
+                    <td class="cell grid-cell" data-placement="first" data-index="{{$index}}" colspan="7"></td>
                 </tr>
                 <tr class="row minor">
                     <td class="hour-row"></td>
-                    <td class="cell grid-cell" colspan="7">
+                    <td class="cell grid-cell" data-placement="second" data-index="{{$index}}" colspan="7">
                     </td>
                 </tr>
             </tbody>
