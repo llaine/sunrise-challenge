@@ -1,0 +1,102 @@
+@import "mixins";
+
+
+$heightTable: 500px;
+
+$titleActiveColor:#235E90;
+$titleHighlight: #1c91ea;
+
+table {
+	border-collapse: collapse;
+}
+
+
+#scrollingWrapper {
+
+	#scrollingTable {
+
+		#multiDayView {
+			/* The navigation bar where all the day are */
+			#navigationBar {
+				/* The TH where the infos are */
+				.day-nav {
+					@extend .center;
+					width: 150px;
+					/* Span representing the vertical-border and the active state (in blue) for the current day */
+					.border-vertical {
+						width: 150px;
+						height: 600px;
+						border-right: thin solid #8b8b8b;
+						position: absolute;
+						display: inherit;
+						margin-top: 17px;
+						z-index: -1;
+
+						&.active {
+							background-color: #C2DBF0;
+							@include opacity(0.4);
+						}
+					}
+
+					/* The span containing the day */
+					.day {
+						&.active {
+							color: $titleHighlight;
+						}
+					}
+
+					/* the hour time line (in red).   */
+					.timestamp-line {
+						/* Only active for the current day.  */
+						&.active {
+							top:20%;
+							width: 150px;
+							position: absolute;
+							height: 2px;
+							z-index: 9999;
+							background-color: #fa565a;
+							pointer-events: none;
+							display: inherit;
+						}
+					}
+				}
+			}
+
+			#grid {
+				/* each tr of the table. */
+				.row {
+					position: relative;
+					margin-left: 10px;
+					z-index: 2;
+
+					/* The beginning of an hour */
+					&.major { border-top: thin solid #b9b9b9; }
+					/* The middle of an hour */
+					&.minor { border-top: thin dotted #b9b9b9; }
+
+					.hour-row { border-right: thin solid #000000; }
+					/* each td of the row */
+					.cell {
+						height: 15px;
+						padding: 5px;
+
+						&.grid-cell {
+							/* An event */
+							.event {
+								position: absolute;
+								width: 100px;
+								background: #83bdee;
+								height: 50px;
+								left: 7%;
+								padding: 10px;
+								border-radius: 1px;
+								color: $titleActiveColor;
+								border-left: 2px solid #101092;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

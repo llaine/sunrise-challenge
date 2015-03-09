@@ -1,0 +1,32 @@
+<div id="scrollingWrapper">
+    <div id="scrollingTable">
+        <table id="multiDayView">
+            <caption></caption>
+            <thead>
+                <tr id="navigationBar">
+                    <th class="hour-nav"></th>
+                    <th class="day-nav" ng-repeat="week in daysOfTheWeek">
+                        <span class="border-vertical" ng-class="{true:'active', false:''}[week.currentDay]"></span>
+                        <span class="timestamp-line" ng-class="{true:'active', false:''}[week.currentDay]"></span>
+                        <span class="day" ng-class="{true:'active', false:''}[week.currentDay]">{{ week.day }} {{ week.month }}/{{week.dayNumber }}</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="grid" ng-repeat="time in hours">
+                <tr class="row major">
+                    <td class="hour-row">
+                        {{ time.hour }}
+                    </td>
+                    <td class="cell grid-cell" colspan="7">
+                        {{ time.content }}
+                    </td>
+                </tr>
+                <tr class="row minor">
+                    <td class="hour-row"></td>
+                    <td class="cell grid-cell" colspan="7">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
