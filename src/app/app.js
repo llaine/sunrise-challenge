@@ -13,7 +13,7 @@ angular.module('ngSunriseChallenge', ['ngRoute'])
     .config(['$routeProvider', function($routeProvider) {
 
         $routeProvider.when('/', {
-            templateUrl: '/app/home/home.html',
+            templateUrl: 'app/home/home.html',
             controller: 'homeController'
         }).otherwise( '/' );
 

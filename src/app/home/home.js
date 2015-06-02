@@ -9,6 +9,13 @@
 
 
 angular.module('ngSunriseChallenge')
-    .controller('homeController', [function() {
-        console.log('test');
+    .controller('homeController', ['$scope', function($scope) {
+
+        $scope.name = "Jasmine";
+
+        $scope.greet = function () {
+            $scope.fullName = "Hello " + $scope.name;
+        };
+
+
     }]);

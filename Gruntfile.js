@@ -18,15 +18,25 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        sass: {
-            options: {
-                sourceMap: true
+        watch: {
+            css: {
+                files: ['src/sass/*.scss'],
+                tasks: ['compass']
             },
-            dist: {
-                files: {
-                    'main.css': 'main.scss'
-                }
+            javascript: {
+                files: ["src/**/*.js", "src/**/*.html"]
+            },
+            options: {
+                livereload: true
             }
+        },
+        /* Task which convert the scss in css.  */
+        compass: {
+            options: {
+                sassDir: 'src/sass/',
+                cssDir: 'src/assets/style/'
+            },
+            dist: {}
         },
         uglify: {
             options: {
@@ -53,9 +63,9 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['sass', 'uglify']);
+    grunt.registerTask('default', ['uglify']);
     grunt.registerTask('watch', ['watch']);
-    grunt.registerTask('server', ['connect']);
+    grunt.registerTask('server', ['connect', 'watch']);
 };
 
 
