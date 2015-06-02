@@ -5,12 +5,20 @@
     <title>Sunrise challenge calendar</title>
 </head>
 <body>
+    <ul>
+        <li><a href="#/">Events</a></li>
+        <li><a href="#/bookmarks">My favorites</a></li>
+    </ul>
     <div ng-view></div>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
     <script type="text/javascript" src="app/home/home.js"></script>
-    <script type="text/javascript" src="app/components/uppercase.filter.js"></script>
-    <script type="text/javascript" src="app/components/time.dir.js"></script>
+    <script type="text/javascript" src="app/components/filter/uppercase.filter.js"></script>
+    <script type="text/javascript" src="app/components/directives/time.dir.js"></script>
+    <script type="text/javascript" src="app/components/services/digitalSquare.js"></script>
+    <script type="text/javascript" src="app/components/filter/trusted-html.js"></script>
+    <script type="text/javascript" src="app/components/services/bookmarks.js"></script>
+    <script type="text/javascript" src="app/bookmarks/bookmarks.js"></script>
 </body>
 </html>

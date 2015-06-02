@@ -1,0 +1,9 @@
+<h2>Bookmarks</h2>
+
+<ul>
+    <li ng-repeat="event in bookmarkedEvents">
+        <h3>{{ event.name }} <small> {{ event.date }}</small></h3>
+        <p ng-bind-html="event.description | trusted "></p>
+        <p style="color: silver">{{ event.address }} à {{ event.city }}</p>
+    </li>
+</ul>

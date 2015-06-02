@@ -15,6 +15,9 @@ angular.module('ngSunriseChallenge', ['ngRoute'])
         $routeProvider.when('/', {
             templateUrl: 'app/home/home.html',
             controller: 'homeController'
+        }).when('/bookmarks', {
+            templateUrl: 'app/bookmarks/bookmarks.html',
+            controller: 'bookmarksController'
         }).otherwise( '/' );
 
     }]);
