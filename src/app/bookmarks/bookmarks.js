@@ -9,8 +9,6 @@
 angular.module('ngSunriseChallenge')
     .controller('bookmarksController', ['$scope', 'BookMarksService', function($scope, BookMarksService) {
 
-        BookMarksService.query(function (events) {
-            $scope.bookmarkedEvents = events;
-        });
+        $scope.bookmarkedEvents = BookMarksService.query();
 
     }]);

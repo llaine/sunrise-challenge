@@ -21,14 +21,6 @@ describe('Unit: MainController', function() {
             var controller = $controller("homeController", {$scope:$scope});
 
             expect(controller).toBeDefined();
-
-            $scope.greet();
-            expect($scope.fullName).toEqual("Hello Jasmine");
-
-            $scope.name = "toto";
-            $scope.greet();
-            expect($scope.fullName).toEqual("Hello toto");
-
         });
     });
 });

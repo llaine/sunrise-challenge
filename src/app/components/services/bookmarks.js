@@ -14,7 +14,7 @@ app.service('BookMarksService', [function () {
      * @param event
      */
     function addOne(event) {
-        if(isBookmarked(event.id)){
+        if(!isBookmarked(event.name)){
             bookmars.push(event);
         }
     }
@@ -22,21 +22,21 @@ app.service('BookMarksService', [function () {
     /**
      * Vérifie si un évent est déjà présent dans la liste des
      * favoris.
-     * @param id
+     * @param name
      * @returns {boolean}
      */
-    function isBookmarked(id) {
+    function isBookmarked(name) {
         return bookmars.some(function (event) {
-            return event.id === id;
+            return event.name === name;
         })
     }
 
     /**
      * Renvoie tout les events dans un callback.
-     * @param cb
+     * @returns {Array}
      */
-    function getAll(cb) {
-        cb(bookmars);
+    function getAll() {
+        return bookmars;
     }
 
     /**

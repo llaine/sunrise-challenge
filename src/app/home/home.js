@@ -18,7 +18,6 @@ angular.module('ngSunriseChallenge')
         $scope.bookmarkEvent = function (name, end_at, description, address, city) {
 
             var eventFormated = {
-                id:new Date().getTime(),
                 name:name,
                 date:end_at,
                 description:description,
