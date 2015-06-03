@@ -15,8 +15,8 @@ describe('Unit: MainController', function() {
     }));
 
 
-    describe("$scope.greet", function () {
-        it("Dit bonjour avec $scope.name", function () {
+    describe("Defined", function () {
+        it("Doit bien exister", function () {
             var $scope = {};
             var controller = $controller("homeController", {$scope:$scope});
 

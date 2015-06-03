@@ -14,9 +14,10 @@ app.directive('btnBookmark', ['BookMarksService', function (BookMarksService) {
             'event':'=',
             'venue':'='
         },
-        template:'<button ng-show="isBookmarked" disabled>Already in favs</button>' +
-                '<button ng-show="!isBookmarked" ng-click="bookmarkEvent(event.name, event.end_at, event.description, venue.address, venue.city); isBookmarked=true" >Add to favorites</button>',
+        template:'<button ng-if="isBookmarked" disabled>Already in favs</button>' +
+                '<button ng-if="!isBookmarked" ng-click="bookmarkEvent(event.name, event.end_at, event.description, venue.address, venue.city)" >Add to favorites</button>',
         link: function (scope, element, attrs, ctrl) {
+            scope.isBookmarked = false;
 
             /* ON attend que l'attribue soit évalué par le $digest d'angular */
             scope.$watch('event', function (newVal) {

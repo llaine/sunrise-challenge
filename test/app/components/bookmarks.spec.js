@@ -45,39 +45,13 @@ var mockEvents = {
 
 
 describe("Mocking service bookmarks", function () {
-    var $scope, BookMarksService, DigitalSquare;
+    var $scope, BookMarksService;
 
     beforeEach(module('ngSunriseChallenge'));
 
-    beforeEach(function () {
-        /* création de notre mock service, avec des fake datas */
-        var mockDigitalSquare = {};
-        module('ngSunriseChallenge', function ($provide) {
-            $provide.value('DigitalSquare', mockDigitalSquare);
-        });
-
-        inject(function ($q) {
-            mockDigitalSquare.query = function () {
-                var defer = $q.defer();
-                defer.resolve(mockEvents);
-                return defer.promise;
-            }
-        });
-    });
-
-
-    beforeEach(inject(function (_$controller_, $rootScope, _BookMarksService_, _DigitalSquare_) {
+    beforeEach(inject(function (_$controller_, $rootScope, _BookMarksService_) {
         $scope = $rootScope.$new();
         BookMarksService = _BookMarksService_;
-        DigitalSquare = _DigitalSquare_;
-
-        _$controller_('homeController',
-            {$scope: $scope,
-                DigitalSquare: DigitalSquare,
-                BookMarksService: BookMarksService
-            });
-
-        $scope.$digest();
     }));
 
 
@@ -93,13 +67,7 @@ describe("Mocking service bookmarks", function () {
             city:eventBookmarke.Venue.city
         };
 
-        $scope.bookmarkEvent(
-            eventBookmarke.Event.name,
-            eventBookmarke.Event.end_at,
-            eventBookmarke.Event.description,
-            eventBookmarke.Venue.address,
-            eventBookmarke.Venue.city
-        );
+        BookMarksService.add(formatedEvent);
 
         expect(BookMarksService.query().length).toBe(1);
 
@@ -107,22 +75,16 @@ describe("Mocking service bookmarks", function () {
         expect(BookMarksService.query()).toEqual([formatedEvent]);
 
         /* on ajoute le même pour vérifier qu'il ne soit pas en double */
-        $scope.bookmarkEvent(
-            eventBookmarke.Event.name,
-            eventBookmarke.Event.end_at,
-            eventBookmarke.Event.description,
-            eventBookmarke.Venue.address,
-            eventBookmarke.Venue.city
-        );
+        BookMarksService.add(formatedEvent);
 
-        /* doit toujours être à un; */
+        /*doit toujours être à un; */
         expect(BookMarksService.query().length).toBe(1);
 
 
-        /* la fonction get doit retourner l'element demandé */
+        /*la fonction get doit retourner l'element demandé */
         expect(BookMarksService.get(eventBookmarke.Event.name)).toEqual(formatedEvent);
 
-        /* l'event dont le nom === michel n'existe pas, donc doit renvoyer null */
+        /*l'event dont le nom === michel n'existe pas, donc doit renvoyer null */
         expect(BookMarksService.get("michel")).toEqual(null);
 
     });
