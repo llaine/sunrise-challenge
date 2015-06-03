@@ -72,13 +72,16 @@ describe("Mocking service bookmarks", function () {
         DigitalSquare = _DigitalSquare_;
 
         _$controller_('homeController',
-            {$scope: $scope, DigitalSquare: DigitalSquare, BookMarksService: BookMarksService});
+            {$scope: $scope,
+                DigitalSquare: DigitalSquare,
+                BookMarksService: BookMarksService
+            });
 
         $scope.$digest();
     }));
 
 
-    it("Doit ajouter un nouveau bookmark au click du bookmark", function () {
+    it("Doit ajouter un nouveau bookmark au click du bookmark sans doublons", function () {
 
         var eventBookmarke = mockEvents.data.events[0];
 
@@ -100,8 +103,27 @@ describe("Mocking service bookmarks", function () {
 
         expect(BookMarksService.query().length).toBe(1);
 
+        /* renvoie un tableau d'évenement */
         expect(BookMarksService.query()).toEqual([formatedEvent]);
 
+        /* on ajoute le même pour vérifier qu'il ne soit pas en double */
+        $scope.bookmarkEvent(
+            eventBookmarke.Event.name,
+            eventBookmarke.Event.end_at,
+            eventBookmarke.Event.description,
+            eventBookmarke.Venue.address,
+            eventBookmarke.Venue.city
+        );
+
+        /* doit toujours être à un; */
+        expect(BookMarksService.query().length).toBe(1);
+
+
+        /* la fonction get doit retourner l'element demandé */
+        expect(BookMarksService.get(eventBookmarke.Event.name)).toEqual(formatedEvent);
+
+        /* l'event dont le nom === michel n'existe pas, donc doit renvoyer null */
+        expect(BookMarksService.get("michel")).toEqual(null);
 
     });
 });

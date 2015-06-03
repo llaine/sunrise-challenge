@@ -8,25 +8,10 @@
 'use strict';
 
 angular.module('ngSunriseChallenge')
-    .controller('homeController', ['$scope', 'DigitalSquare', 'BookMarksService', function($scope, DigitalSquare, BookMarksService) {
+    .controller('homeController', ['$scope', 'DigitalSquare', function($scope, DigitalSquare) {
 
         DigitalSquare.query().then(function (resultat) {
             $scope.events = resultat.data.events;
         });
-        
-        
-        $scope.bookmarkEvent = function (name, end_at, description, address, city) {
-
-            var eventFormated = {
-                name:name,
-                date:end_at,
-                description:description,
-                address:address,
-                city:city
-            };
-
-            BookMarksService.add(eventFormated);
-
-        }
 
     }]);

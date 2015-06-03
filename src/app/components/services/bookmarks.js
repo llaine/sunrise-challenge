@@ -41,19 +41,22 @@ app.service('BookMarksService', [function () {
 
     /**
      * Récupère un évenement provenant de la liste des favoris.
-     * @param id
-     * @returns {Array.<T>}
+     * Vérifie l'existence de l'event avant de return
+     * @param name
+     * @returns {*}
      */
-    function get(id){
-        return bookmars.filter(function (bookmark) {
-            return bookmark.id === id;
-        })
+    function get(name){
+        var bk = bookmars.filter(function (bookmark) {
+            return bookmark.name === name;
+        });
+        return bk ? bk[0] : null;
     }
 
     return {
         add:addOne,
         get:get,
-        query:getAll
+        query:getAll,
+        isBookmarked:isBookmarked
     }
 
 

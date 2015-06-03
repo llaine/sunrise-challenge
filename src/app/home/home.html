@@ -3,6 +3,6 @@
         <h3>{{ event.Event.name }} <small> {{ event.Event.end_at }}</small></h3>
         <p ng-bind-html="event.Event.description | trusted "></p>
         <p style="color: silver">{{ event.Venue.address }} à {{ event.Venue.city }}</p>
-        <button ng-click="bookmarkEvent(event.Event.name, event.Event.end_at, event.Event.description, event.Venue.address, event.Venue.city)">Bookmark this ! </button>
+        <btn-bookmark event="event.Event" venue="event.Venue"></btn-bookmark>
     </li>
 </ul>
