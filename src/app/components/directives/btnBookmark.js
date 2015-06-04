@@ -25,7 +25,7 @@ app.directive('btnBookmark', ['BookMarksService', function (BookMarksService) {
                 scope.isBookmarked = BookMarksService.isBookmarked(newVal.name);
             });
 
-            scope.$watch('venue', function(newVal){
+            scope.$watch('venue', function(newVal) {
                 attrs.venue = newVal;
             });
 

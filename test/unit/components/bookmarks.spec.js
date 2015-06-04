@@ -43,7 +43,6 @@ var mockEvents = {
 };
 
 
-
 describe("Mocking service bookmarks", function () {
     var $scope, BookMarksService;
 

@@ -47,8 +47,6 @@ var mockEvents = {
 describe("Mocking service DigitalSquare", function () {
     var $scope, DigitalSquare;
 
-    beforeEach(module('ngSunriseChallenge'));
-
     beforeEach(function () {
         /* création de notre mock service, avec des fake datas */
         var mockDigitalSquare = {};
@@ -65,6 +63,8 @@ describe("Mocking service DigitalSquare", function () {
         });
     });
 
+
+
     beforeEach(inject(function (_$controller_, $rootScope, _DigitalSquare_) {
         $scope = $rootScope.$new();
         DigitalSquare = _DigitalSquare_;
@@ -73,6 +73,7 @@ describe("Mocking service DigitalSquare", function () {
             { $scope:$scope, DigitalSquare:DigitalSquare });
 
         $scope.$digest();
+
     }));
 
 

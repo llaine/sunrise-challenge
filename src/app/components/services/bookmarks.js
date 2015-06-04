@@ -6,7 +6,7 @@
 
 
 app.service('BookMarksService', [function () {
-    var bookmars = [];
+    var bookmars = JSON.parse(sessionStorage.getItem("bookmarkedEvents")) || [];
 
     /**
      * Ajoute un évent à la liste des favoris en vérifiant que
@@ -16,6 +16,7 @@ app.service('BookMarksService', [function () {
     function addOne(event) {
         if(!isBookmarked(event.name)){
             bookmars.push(event);
+            sessionStorage.setItem("bookmarkedEvents", JSON.stringify(bookmars));
         }
     }
 
