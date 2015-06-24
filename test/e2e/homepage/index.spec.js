@@ -5,7 +5,6 @@
 
 describe('Mon application au lancement', function () {
 
-
     beforeEach(function () {
         browser.get("index.html");
     });

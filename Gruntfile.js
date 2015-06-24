@@ -60,9 +60,17 @@ module.exports = function (grunt) {
                     keepalive: true
                 }
             }
+        },
+        protractor: {
+            local: {
+                options: {
+                    configFile: "test/e2e/protractor.conf.js"
+                }
+            }
         }
     });
 
+    grunt.registerTask('test', ['protractor:local']);
     grunt.registerTask('default', ['uglify']);
     grunt.registerTask('watch', ['watch']);
     grunt.registerTask('server', ['connect', 'watch']);
